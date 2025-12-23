@@ -11,13 +11,9 @@ struct LicenseManagementView: View {
                 // Hero Section
                 heroSection
                 
-                // Main Content
+                // Main Content - Always show free version content
                 VStack(spacing: 32) {
-                    if case .licensed = licenseViewModel.licenseState {
-                        activatedContent
-                    } else {
-                        purchaseContent
-                    }
+                    freeContent
                 }
                 .padding(32)
             }
@@ -35,10 +31,10 @@ struct LicenseManagementView: View {
                 HStack(spacing: 16) {
                     Image(systemName: "checkmark.seal.fill")
                         .font(.system(size: 32))
-                        .foregroundStyle(.blue)
+                        .foregroundStyle(.green)
                     
                     HStack(alignment: .lastTextBaseline, spacing: 8) { 
-                        Text(licenseViewModel.licenseState == .licensed ? "VoiceInk Pro" : "Upgrade to Pro")
+                        Text("VoiceInk Free")
                             .font(.system(size: 32, weight: .bold))
                         
                         Text("v\(appVersion)")
@@ -48,9 +44,7 @@ struct LicenseManagementView: View {
                     }
                 }
                 
-                Text(licenseViewModel.licenseState == .licensed ?
-                     "Thank you for supporting VoiceInk" :
-                     "Transcribe what you say to text instantly with AI")
+                Text("All Premium Features Unlocked - Free Version")
                     .font(.title3)
                     .foregroundStyle(.secondary)
                     .multilineTextAlignment(.center)
@@ -124,18 +118,17 @@ struct LicenseManagementView: View {
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(12)
                 
-                // Purchase Button 
-                Button(action: {
-                    if let url = URL(string: "https://tryvoiceink.com/buy") {
-                        NSWorkspace.shared.open(url)
-                    }
-                }) {
-                    Text("Upgrade to VoiceInk Pro")
+                // Free Version Message
+                VStack(spacing: 12) {
+                    Text("Free Version - All Features Unlocked")
                         .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 12)
+                        .foregroundColor(.green)
+                    
+                    Text("Enjoy all premium features without restrictions.")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
                 }
-                .buttonStyle(.borderedProminent)
+                .padding(.vertical, 12)
                 
                 // Features Grid
                 HStack(spacing: 40) {

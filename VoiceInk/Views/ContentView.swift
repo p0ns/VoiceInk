@@ -14,7 +14,7 @@ enum ViewType: String, CaseIterable, Identifiable {
     case audioInput = "Audio Input"
     case dictionary = "Dictionary"
     case settings = "Settings"
-    case license = "VoiceInk Pro"
+    // case license = "VoiceInk Pro" // Remove for free fork
 
     var id: String { rawValue }
 
@@ -30,7 +30,7 @@ enum ViewType: String, CaseIterable, Identifiable {
         case .audioInput: return "mic.fill"
         case .dictionary: return "character.book.closed.fill"
         case .settings: return "gearshape.fill"
-        case .license: return "checkmark.seal.fill"
+        // case .license: return "checkmark.seal.fill" // Remove for free fork
         }
     }
 }
@@ -61,12 +61,16 @@ struct ContentView: View {
     @AppStorage("powerModeUIFlag") private var powerModeUIFlag = false
     @State private var selectedView: ViewType? = .metrics
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0"
-    @StateObject private var licenseViewModel = LicenseViewModel()
+    // @StateObject private var licenseViewModel = LicenseViewModel() // Remove for free fork
 
     private var visibleViewTypes: [ViewType] {
         ViewType.allCases.filter { viewType in
             if viewType == .powerMode {
                 return powerModeUIFlag
+            }
+            // Remove license view for free fork
+            if viewType == .license {
+                return false
             }
             return true
         }
@@ -89,15 +93,7 @@ struct ContentView: View {
                         Text("VoiceInk")
                             .font(.system(size: 14, weight: .semibold))
 
-                        if case .licensed = licenseViewModel.licenseState {
-                            Text("PRO")
-                                .font(.system(size: 9, weight: .heavy))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 4)
-                                .padding(.vertical, 2)
-                                .background(Color.blue)
-                                .cornerRadius(4)
-                        }
+                        // Remove PRO badge for free fork - always show as licensed
 
                         Spacer()
                     }

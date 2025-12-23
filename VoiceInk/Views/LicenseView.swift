@@ -1,47 +1,19 @@
 import SwiftUI
 
 struct LicenseView: View {
-    @StateObject private var licenseViewModel = LicenseViewModel()
-    
     var body: some View {
         VStack(spacing: 15) {
-            Text("License Management")
+            Text("VoiceInk Free Version")
                 .font(.headline)
             
-            if case .licensed = licenseViewModel.licenseState {
-                VStack(spacing: 10) {
-                    Text("Premium Features Activated")
-                        .foregroundColor(.green)
-                    
-                    Button(role: .destructive, action: {
-                        licenseViewModel.removeLicense()
-                    }) {
-                        Text("Remove License")
-                    }
-                }
-            } else {
-                TextField("Enter License Key", text: $licenseViewModel.licenseKey)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(maxWidth: 300)
+            VStack(spacing: 10) {
+                Text("All Premium Features Unlocked")
+                    .foregroundColor(.green)
+                    .font(.title2)
                 
-                Button(action: {
-                    Task {
-                        await licenseViewModel.validateLicense()
-                    }
-                }) {
-                    if licenseViewModel.isValidating {
-                        ProgressView()
-                    } else {
-                        Text("Activate License")
-                    }
-                }
-                .disabled(licenseViewModel.isValidating)
-            }
-            
-            if let message = licenseViewModel.validationMessage {
-                Text(message)
-                    .foregroundColor(licenseViewModel.licenseState == .licensed ? .green : .red)
-                    .font(.caption)
+                Text("This is a free fork with all features enabled.")
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
             }
         }
         .padding()
