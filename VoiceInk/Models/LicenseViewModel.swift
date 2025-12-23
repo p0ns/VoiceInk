@@ -20,10 +20,21 @@ class LicenseViewModel: ObservableObject {
     private let userDefaults = UserDefaults.standard
     
     init() {
+        #if DEBUG
+        // In debug builds, always set to licensed to bypass trial restrictions
+        licenseState = .licensed
+        #else
         loadLicenseState()
+        #endif
     }
     
     func startTrial() {
+        #if DEBUG
+        // Skip trial logic in debug builds
+        licenseState = .licensed
+        return
+        #endif
+        
         // Only set trial start date if it hasn't been set before
         if userDefaults.trialStartDate == nil {
             userDefaults.trialStartDate = Date()
@@ -33,6 +44,12 @@ class LicenseViewModel: ObservableObject {
     }
     
     private func loadLicenseState() {
+        #if DEBUG
+        // In debug builds, always return licensed
+        licenseState = .licensed
+        return
+        #endif
+        
         // Check for existing license key
         if let licenseKey = userDefaults.licenseKey {
             self.licenseKey = licenseKey
@@ -71,12 +88,17 @@ class LicenseViewModel: ObservableObject {
     }
     
     var canUseApp: Bool {
+        #if DEBUG
+        // Always allow app usage in debug builds
+        return true
+        #else
         switch licenseState {
         case .licensed, .trial:
             return true
         case .trialExpired:
             return false
         }
+        #endif
     }
     
     func openPurchaseLink() {
