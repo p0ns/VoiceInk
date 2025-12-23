@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MetricsContent: View {
     let transcriptions: [Transcription]
-    let licenseState: LicenseViewModel.LicenseState
+    // Remove licenseState for free fork version
     @State private var showKeyboardShortcuts = false
 
     var body: some View {
@@ -17,7 +17,7 @@ struct MetricsContent: View {
                             metricsSection
                             HStack(alignment: .top, spacing: 18) {
                                 HelpAndResourcesSection()
-                                DashboardPromotionsSection(licenseState: licenseState)
+                                // Remove promotions for free fork
                             }
 
                             Spacer(minLength: 20)
