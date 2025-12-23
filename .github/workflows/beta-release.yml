@@ -44,6 +44,17 @@ jobs:
           echo "Message: $COMMIT_MESSAGE" >> $GITHUB_OUTPUT
           echo "Date: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_OUTPUT
           echo "" >> $GITHUB_OUTPUT
+          echo "## ⚠️ Gatekeeper Warning" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "This is a free fork with no code signing. When you first run VoiceInk," >> $GITHUB_OUTPUT
+          echo "macOS will show a security warning. To bypass:" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "1. Right-click (or Control-click) on VoiceInk.app" >> $GITHUB_OUTPUT
+          echo "2. Select \"Open\" from the context menu" >> $GITHUB_OUTPUT
+          echo "3. Click \"Open\" in the confirmation dialog" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "Or allow in System Settings > Privacy & Security" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
           echo "This is an automated beta release from the main branch." >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
@@ -75,24 +86,19 @@ jobs:
           cd whisper.cpp
           ./build-xcframework.sh
           
-          # Build VoiceInk (Debug for beta releases)
+          # Build VoiceInk (Debug for beta releases, unsigned for free fork)
           cd $GITHUB_WORKSPACE
           xcodebuild -project VoiceInk.xcodeproj \
             -scheme VoiceInk \
             -configuration Debug \
             -derivedDataPath build \
-            CODE_SIGN_IDENTITY="-" \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY="" \
             build
 
       - name: Create DMG for Testing
         run: |
           # Find built .app file (Debug build for beta releases)
           APP_PATH=$(find build/Build/Products/Debug -name "VoiceInk.app" -type d | head -1)
-
-          # Ad-hoc sign the app to reduce Gatekeeper issues
-          codesign --force --deep --sign - "$APP_PATH"
 
           # Create temporary directory for DMG
           mkdir -p dmg_temp
