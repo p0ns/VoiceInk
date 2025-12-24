@@ -56,9 +56,9 @@
 		E11473B02CBE0F0A00318EE4 /* VoiceInk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceInk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11473C32CBE0F0B00318EE4 /* VoiceInkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceInkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11473CD2CBE0F0B00318EE4 /* VoiceInkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoiceInkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1A0BD052EB1E7B800266859 /* whisper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = whisper.xcframework; path = "../../../VoiceInk-Dependencies/whisper.cpp/build-apple/whisper.xcframework"; sourceTree = "<group>"; };
-		E1B2DCAA2E3DE70A008DFD68 /* whisper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = whisper.xcframework; path = "../../../VoiceInk-Dependencies/whisper.cpp/build-apple/whisper.xcframework"; sourceTree = "<group>"; };
-		E1CE28772E4336150082B758 /* whisper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = whisper.xcframework; path = "../../../VoiceInk-Dependencies/whisper.cpp/build-apple/whisper.xcframework"; sourceTree = "<group>"; };
+		E1A0BD052EB1E7B800266859 /* whisper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = whisper.xcframework; path = "../../VoiceInk-Dependencies/whisper.cpp/build-apple/whisper.xcframework"; sourceTree = "<group>"; };
+		E1B2DCAA2E3DE70A008DFD68 /* whisper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = whisper.xcframework; path = "../../VoiceInk-Dependencies/whisper.cpp/build-apple/whisper.xcframework"; sourceTree = "<group>"; };
+		E1CE28772E4336150082B758 /* whisper.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = whisper.xcframework; path = "../../VoiceInk-Dependencies/whisper.cpp/build-apple/whisper.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -398,7 +398,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG ENABLE_NATIVE_SPEECH_ANALYZER $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -454,7 +454,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ENABLE_NATIVE_SPEECH_ANALYZER $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -487,7 +487,7 @@
 				MARKETING_VERSION = 1.64;
 				PRODUCT_BUNDLE_IDENTIFIER = com.prakashjoshipax.VoiceInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG ENABLE_NATIVE_SPEECH_ANALYZER $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -521,7 +521,7 @@
 				MARKETING_VERSION = 1.64;
 				PRODUCT_BUNDLE_IDENTIFIER = com.prakashjoshipax.VoiceInk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "ENABLE_NATIVE_SPEECH_ANALYZER $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
